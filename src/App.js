@@ -9,18 +9,30 @@ function App() {
   const AddToDo = (toDoInput) => {
     const toDoDate = new Date().toISOString().split("T")[0];
     const toDo = {
+      id: Date.now(),
       title: toDoInput,
       date: toDoDate,
       completed: false,
     };
     setToDoList((prevToDoList) => [...prevToDoList, toDo]);
-    // console.log(toDoList);
+  };
+
+  const DeleteToDo = (toDo) => {
+    setToDoList(toDoList.filter((todo) => todo.id !== toDo.id));
+  };
+
+  const ToggleToDo = (toDo) => {
+    setToDoList(
+      toDoList.map((todo) =>
+        todo.id === toDo.id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   };
 
   return (
     <div className="App">
       <TodoForm onAdd={AddToDo} />
-      <TodoList toDos={toDoList} />
+      <TodoList toDos={toDoList} onDelete={DeleteToDo} onToggle={ToggleToDo} />
     </div>
   );
 }
