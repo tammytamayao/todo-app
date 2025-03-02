@@ -13,14 +13,14 @@ function App() {
       date: toDoDate,
       completed: false,
     };
-    toDoList.push(toDo);
-    console.log(toDoList);
+    setToDoList((prevToDoList) => [...prevToDoList, toDo]);
+    // console.log(toDoList);
   };
 
   return (
     <div className="App">
       <TodoForm onAdd={AddToDo} />
-      <TodoList />
+      <TodoList toDos={toDoList} />
     </div>
   );
 }
