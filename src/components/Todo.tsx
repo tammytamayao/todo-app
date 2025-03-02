@@ -1,9 +1,14 @@
 import React from "react";
 
-function Todo() {
+function Todo({ toDo, index }) {
   return (
     <div>
-      <span>This is Todo!</span>
+      <li key={index}>
+        <input type="checkbox" checked={toDo.completed} />
+        <span>{toDo.title}</span>
+        <span>({toDo.date})</span>
+        <button>Delete</button>
+      </li>
     </div>
   );
 }
