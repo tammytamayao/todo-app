@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-function TodoForm() {
+function TodoForm({ onAdd }) {
+  const [toDoInput, setToDoInput] = useState("");
+
+  const handleChange = (event: any) => {
+    setToDoInput(event.target.value);
+  };
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    onAdd(toDoInput);
+  };
   return (
     <div>
-      <span>This is TodoForm!</span>
+      <form onSubmit={handleSubmit}>
+        <input value={toDoInput} onChange={handleChange} />
+        <button type="submit">Add</button>
+      </form>
     </div>
   );
 }
