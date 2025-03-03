@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "./Todo.tsx";
 
-function TodoList({ toDos, onDelete, onToggle }) {
+function TodoList({ toDos, onDelete, onToggle, onEdit, onUpdate }) {
   return (
     <div>
       <ul className="list-group">
@@ -11,6 +11,8 @@ function TodoList({ toDos, onDelete, onToggle }) {
             toDo={toDo}
             onDelete={onDelete}
             onToggle={onToggle}
+            onEdit={onEdit}
+            onUpdate={onUpdate}
           />
         ))}
       </ul>
