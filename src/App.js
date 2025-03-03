@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoForm from "./components/TodoForm.tsx";
 import TodoList from "./components/TodoList.tsx";
@@ -29,11 +29,24 @@ function App() {
     );
   };
 
+  const sortedToDo = [
+    ...toDoList
+      .filter((todo) => !todo.completed)
+      .sort((a, b) => a.date - b.date),
+    ...toDoList
+      .filter((todo) => todo.completed)
+      .sort((a, b) => a.date - b.date),
+  ];
+
   return (
     <div className="App container py-5">
       <h1 className="text-center mb-4">Todo List</h1>
       <TodoForm onAdd={AddToDo} />
-      <TodoList toDos={toDoList} onDelete={DeleteToDo} onToggle={ToggleToDo} />
+      <TodoList
+        toDos={sortedToDo}
+        onDelete={DeleteToDo}
+        onToggle={ToggleToDo}
+      />
     </div>
   );
 }
