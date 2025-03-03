@@ -3,20 +3,31 @@ import React, { useState } from "react";
 function TodoForm({ onAdd }) {
   const [toDoInput, setToDoInput] = useState("");
 
-  const handleChange = (event: any) => {
+  const handleChange = (event) => {
     setToDoInput(event.target.value);
   };
-  const handleSubmit = (event: any) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    onAdd(toDoInput);
+    if (toDoInput.trim()) {
+      onAdd(toDoInput);
+      setToDoInput("");
+    }
   };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input value={toDoInput} onChange={handleChange} />
-        <button type="submit">Add</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="d-flex mb-4">
+      <input
+        type="text"
+        value={toDoInput}
+        onChange={handleChange}
+        className="form-control me-2"
+        placeholder="Enter a new todo"
+      />
+      <button type="submit" className="btn btn-primary">
+        Add
+      </button>
+    </form>
   );
 }
 

@@ -1,11 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import TodoForm from "./components/TodoForm.tsx";
 import TodoList from "./components/TodoList.tsx";
-import { useState } from "react";
 
 function App() {
   const [toDoList, setToDoList] = useState([]);
+
   const AddToDo = (toDoInput) => {
     const toDoDate = new Date().toISOString().split("T")[0];
     const toDo = {
@@ -30,7 +30,8 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container py-5">
+      <h1 className="text-center mb-4">Todo List</h1>
       <TodoForm onAdd={AddToDo} />
       <TodoList toDos={toDoList} onDelete={DeleteToDo} onToggle={ToggleToDo} />
     </div>

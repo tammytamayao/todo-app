@@ -4,10 +4,10 @@ import Todo from "./Todo.tsx";
 function TodoList({ toDos, onDelete, onToggle }) {
   return (
     <div>
-      <ul>
-        {toDos.map((toDo: any, index: number) => (
+      <ul className="list-group">
+        {toDos.map((toDo: any) => (
           <Todo
-            index={index}
+            key={toDo.id}
             toDo={toDo}
             onDelete={onDelete}
             onToggle={onToggle}
